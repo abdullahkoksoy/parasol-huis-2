@@ -8,7 +8,7 @@ import { useGLTF, OrbitControls } from "@react-three/drei";
 const store = createXRStore();
 
 function Parasol() {
-  const { scene } = useGLTF("/models/parasol.glb");
+  const { scene } = useGLTF("/models/");
 
   return <primitive object={scene} scale={0.5} position={[0, 0, -3]} />;
 }
