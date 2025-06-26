@@ -38,7 +38,7 @@ export default function ExploreHabitats() {
 
   const scroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
-    const amount = window.innerWidth * 0.5;
+    const amount = window.innerWidth * 0.4;
     scrollRef.current.scrollBy({
       left: dir === "left" ? -amount : amount,
       behavior: "smooth",
@@ -51,18 +51,20 @@ export default function ExploreHabitats() {
 
       <div className="relative">
         {/* Scroll buttons */}
-        <button
-          onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
-        >
-          <ArrowRight size={24} />
-        </button>
+        <div className="absolute -bottom-12 right-1 flex gap-4 z-10">
+          <button
+            onClick={() => scroll("left")}
+            className="bg-white p-2 rounded-full shadow hover:bg-gray-100"
+          >
+            <ArrowLeft size={24} />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="bg-white p-2 rounded-full shadow hover:bg-gray-100"
+          >
+            <ArrowRight size={24} />
+          </button>
+        </div>
 
         {/* Scrollable habitat cards */}
         <div
@@ -73,7 +75,7 @@ export default function ExploreHabitats() {
             <motion.div
               key={label}
               whileHover={{ scale: 1.02 }}
-              className="min-w-[45%] max-w-[45%] bg-white rounded-xl overflow-hidden shadow-md relative"
+              className="min-w-[40%] max-w-[40%] bg-white rounded-xl overflow-hidden shadow-md relative"
             >
               <div className="relative w-full h-60">
                 <Image src={imgSrc} alt={label} fill className="object-cover" />
@@ -106,7 +108,7 @@ export default function ExploreHabitats() {
             onClick={() => setSelected(null)}
           >
             <motion.div
-              className="relative bg-white rounded-lg max-w-3xl w-full p-6 mx-4 shadow-lg"
+              className="relative bg-white rounded-lg max-w-7xl max-h-[90vh] overflow-y-auto w-full p-6 mx-4 shadow-lg"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -125,13 +127,24 @@ export default function ExploreHabitats() {
                 {habitats[selected].label}
               </h3>
 
-              <div className="relative w-full h-64 sm:h-80 mb-4 rounded-md overflow-hidden">
-                <Image
-                  src={habitats[selected].imgSrc}
-                  alt={habitats[selected].label}
-                  fill
-                  className="object-cover"
-                />
+              <div className="space-y-4 mb-4">
+                <div className="relative w-full h-64 sm:h-80 rounded-md overflow-hidden">
+                  <Image
+                    src={habitats[selected].imgSrc}
+                    alt={habitats[selected].label}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="relative w-full h-64 sm:h-80 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/products/parasol-beach.jpg"
+                    alt="örnek"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
               <p className="text-gray-700">{habitats[selected].description}</p>
