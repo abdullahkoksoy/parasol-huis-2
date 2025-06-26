@@ -17,7 +17,7 @@ export default function Hero() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/videos/seaside-beach-umbrella.mp4" type="video/mp4" />
+        <source src="/videos/Parasol-video-hero.mp4" type="video/mp4" />
         {/* Add other formats if needed */}
         Your browser does not support the video tag.
       </video>

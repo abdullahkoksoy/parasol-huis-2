@@ -32,12 +32,6 @@ export default function Home() {
         </section>
 
         <ExploreHabitats />
-
-        <AnimatedSection />
-
-        <div className="container mx-auto px-6">
-          <ProductConfigurator />
-        </div>
       </main>
 
       <footer className="bg-black text-white py-12">
