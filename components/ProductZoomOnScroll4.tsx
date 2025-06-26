@@ -1,0 +1,106 @@
+"use client";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+
+const titleLines = ["LUXE TELESCOPISCHE", "PARASOL"];
+const description = "Luxe Handmatige Telescopische Parasol";
+
+export default function ProductZoomOnScroll() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 70%", "center center"],
+  });
+
+  const scale = useSpring(useTransform(scrollYProgress, [0, 1], [0.3, 1]), {
+    stiffness: 200,
+    damping: 20,
+  });
+
+  const containerOpacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.3], [0, 1]),
+    {
+      stiffness: 100,
+      damping: 20,
+    }
+  );
+
+  return (
+    <section
+      ref={ref}
+      className="h-[60vh] flex items-center justify-center bg-white"
+    >
+      <div className="max-w-7xl w-full flex items-center px-6 gap-12">
+        {/* LEFT SIDE: TEXT */}
+        <motion.div
+          style={{ opacity: containerOpacity }}
+          className="flex-1 max-w-md text-left select-none"
+        >
+          <h2 className="text-3xl mb-6">
+            {titleLines.map((line, lineIndex) => (
+              <div key={lineIndex} className="flex flex-wrap">
+                {line.split("").map((char, charIndex) => {
+                  const totalIndex =
+                    lineIndex === 0
+                      ? charIndex
+                      : titleLines[0].length + charIndex;
+                  const step = 1 / titleLines.join("").length;
+                  const start = step * totalIndex;
+                  const end = step * (totalIndex + 1);
+
+                  const opacity = useTransform(
+                    scrollYProgress,
+                    [start, end],
+                    [0, 1]
+                  );
+                  const y = useTransform(
+                    scrollYProgress,
+                    [start, end],
+                    [20, 0]
+                  );
+
+                  return (
+                    <motion.span
+                      key={totalIndex}
+                      style={{ opacity, y }}
+                      className="inline-block"
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  );
+                })}
+              </div>
+            ))}
+          </h2>
+
+          <p className="text-lg opacity-80">{description}</p>
+          <div className="relative w-full max-w-sm h-20 mt-4">
+            <Image
+              src="/images/products/Vierkante-Parasol-Technisch.jpg"
+              alt="Technical Plan Parasol"
+              fill
+              className="object-contain object-left"
+            />
+            <p className="ml-24 text-sm">Parasolmaat: 300 x 300 cm</p>
+            <p className="ml-24 text-sm">Maat middenpaal: 70 x 3 mm</p>
+            <p className="ml-24 text-sm">Parasolribben: 20 x 30 x 2 mm</p>
+          </div>
+        </motion.div>
+
+        {/* RIGHT SIDE: IMAGE */}
+        <motion.div
+          style={{ scale }}
+          className="relative flex-1 max-w-3xl aspect-video"
+        >
+          <Image
+            src="/images/products/Luxe-Telescopische-Parasol.jpg"
+            alt="Zooming Parasol"
+            fill
+            className="object-contain"
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+}

@@ -5,40 +5,35 @@ import Image from "next/image";
 
 const collections = [
   {
-    title: "Parasols",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80",
+    title: "Beachs",
+    image: "/images/products/parasol-beach.jpg",
     href: "#",
   },
   {
-    title: "Shade Sails",
-    image:
-      "https://images.unsplash.com/photo-1522098543979-ffc7f79d4a45?auto=format&fit=crop&w=1500&q=80",
+    title: "Gardens",
+    image: "/images/products/parasol-garden.jpg",
     href: "#",
   },
   {
-    title: "Outdoor Curtains",
-    image:
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1500&q=80",
+    title: "Pools",
+    image: "/images/products/parasol-pool.jpg",
     href: "#",
   },
   {
-    title: "Accessories",
-    image:
-      "https://images.unsplash.com/photo-1486308510493-cb0800e0f53f?auto=format&fit=crop&w=1500&q=80",
+    title: "Restaurant & Cafe",
+    image: "/images/products/parasol-cafe.jpg",
     href: "#",
   },
 ];
 
 export default function CollectionTeaser() {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-8 space-y-6">
+    <section className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
       {collections.map(({ title, image, href }, i) => (
         <a
           key={i}
           href={href}
-          className="group relative block overflow-hidden rounded-lg"
-          style={{ height: "350px" }}
+          className="group relative block overflow-hidden rounded-lg h-[350px]"
         >
           <Image
             src={image}
