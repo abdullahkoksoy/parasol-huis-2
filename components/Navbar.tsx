@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -19,12 +20,15 @@ function NavLink({ href, children }: NavLinkProps) {
 }
 
 export default function Navbar() {
-  const [show, setShow] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
+  const [show, setShow] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
+    if (!isHome) return; // Don't attach scroll handler if not home
+
     let lastY = window.scrollY;
 
     const handleScroll = () => {
@@ -43,7 +47,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <motion.nav
@@ -51,10 +55,10 @@ export default function Navbar() {
       animate={{ y: show ? 0 : -100 }}
       transition={{ duration: 0.3 }}
       className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        isAtTop ? "bg-transparent" : "bg-white shadow"
+        isHome && isAtTop ? "bg-transparent" : "bg-white"
       }`}
     >
-      <div className="container mx-auto px-6 py-0 flex justify-between items-center text-white">
+      <div className="container mx-auto px-6 py-0 flex justify-between items-center">
         <Link href="/" className="flex items-center -mt-2">
           <Image
             src="/images/products/logo-parasol.png"
@@ -65,7 +69,7 @@ export default function Navbar() {
           />
           <span
             className={`text-xl font-light tracking-widest -ml-14 mt-4 ${
-              isAtTop ? "text-white" : "text-black"
+              isHome && isAtTop ? "text-white" : "text-black"
             }`}
           >
             PARASOL<span className="font-medium"> HUIS</span>
@@ -74,7 +78,7 @@ export default function Navbar() {
 
         <div
           className={`hidden md:flex space-x-8 ${
-            isAtTop ? "text-white" : "text-black"
+            isHome && isAtTop ? "text-white" : "text-black"
           }`}
         >
           <NavLink href="/products">PRODUCTS</NavLink>

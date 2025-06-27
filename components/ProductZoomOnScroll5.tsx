@@ -29,7 +29,7 @@ export default function ProductZoomOnScroll() {
   return (
     <section
       ref={ref}
-      className="h-[60vh] flex items-center justify-center bg-white -mt-12"
+      className="h-[76vh] flex items-center justify-center bg-white -mt-12"
     >
       <div className="max-w-7xl w-full flex items-center px-6 gap-12">
         {/* Left Image */}
@@ -38,7 +38,7 @@ export default function ProductZoomOnScroll() {
           className="relative flex-1 max-w-3xl aspect-video"
         >
           <Image
-            src="/images/products/T-Model-Dubbele-Parasol.jpg"
+            src="/images/products/T-Model-Dubbele-Parasol2.jpg"
             alt="Zooming Parasol"
             fill
             className="object-contain"
@@ -50,41 +50,47 @@ export default function ProductZoomOnScroll() {
           style={{ opacity: containerOpacity }}
           className="flex-1 max-w-md text-left select-none"
         >
-          <h2 className="text-3xl mb-6">
-            {titleLines.map((line, lineIndex) => (
-              <div key={lineIndex} className="flex flex-wrap">
-                {line.split("").map((char, charIndex) => {
-                  const totalIndex =
-                    lineIndex === 0
-                      ? charIndex
-                      : titleLines[0].length + charIndex;
-                  const step = 1 / titleLines.join("").length;
-                  const start = step * totalIndex;
-                  const end = step * (totalIndex + 1);
+          <h2 className="text-3xl mb-6 inline-flex items-start">
+            {/* Red bar */}
+            <span className="text-red-500 mr-2">|</span>
 
-                  const opacity = useTransform(
-                    scrollYProgress,
-                    [start, end],
-                    [0, 1]
-                  );
-                  const y = useTransform(
-                    scrollYProgress,
-                    [start, end],
-                    [20, 0]
-                  );
+            {/* Two-line animated title */}
+            <span className="flex flex-col leading-tight">
+              {titleLines.map((line, lineIndex) => (
+                <span key={lineIndex} className="block">
+                  {line.split("").map((char, charIndex) => {
+                    const totalIndex =
+                      lineIndex === 0
+                        ? charIndex
+                        : titleLines[0].length + charIndex;
+                    const step = 1 / titleLines.join("").length;
+                    const start = step * totalIndex;
+                    const end = step * (totalIndex + 1);
 
-                  return (
-                    <motion.span
-                      key={totalIndex}
-                      style={{ opacity, y }}
-                      className="inline-block"
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                  );
-                })}
-              </div>
-            ))}
+                    const opacity = useTransform(
+                      scrollYProgress,
+                      [start, end],
+                      [0, 1]
+                    );
+                    const y = useTransform(
+                      scrollYProgress,
+                      [start, end],
+                      [20, 0]
+                    );
+
+                    return (
+                      <motion.span
+                        key={totalIndex}
+                        style={{ opacity, y }}
+                        className="inline-block"
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </motion.span>
+                    );
+                  })}
+                </span>
+              ))}
+            </span>
           </h2>
 
           <p className="text-lg opacity-80">{description}</p>
