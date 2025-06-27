@@ -99,6 +99,14 @@ export default function ProductZoomOnScroll() {
             <p className="ml-24 text-sm">Maat middenpaal: 35 x 2 mm</p>
             <p className="ml-24 text-sm">Parasolribben: 12 x 18 x 1 mm</p>
           </div>
+          <div className="mt-6 flex space-x-4">
+            <button className="px-6 py-2 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition cursor-pointer">
+              Kiwi parasols
+            </button>
+            <button className="px-6 py-2 bg-gray-200 text-black rounded-full hover:bg-gray-300 transition cursor-pointer">
+              Alle parasols
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

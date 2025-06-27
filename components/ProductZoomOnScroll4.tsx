@@ -29,7 +29,7 @@ export default function ProductZoomOnScroll() {
   return (
     <section
       ref={ref}
-      className="h-[60vh] flex items-center justify-center bg-white"
+      className="h-[80vh] flex items-center justify-center bg-white"
     >
       <div className="max-w-7xl w-full flex items-center px-6 gap-12">
         {/* LEFT SIDE: TEXT */}
@@ -85,6 +85,14 @@ export default function ProductZoomOnScroll() {
             <p className="ml-24 text-sm">Parasolmaat: 300 x 300 cm</p>
             <p className="ml-24 text-sm">Maat middenpaal: 70 x 3 mm</p>
             <p className="ml-24 text-sm">Parasolribben: 20 x 30 x 2 mm</p>
+          </div>
+          <div className="mt-6 flex space-x-4">
+            <button className="px-6 py-2 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition cursor-pointer">
+              Telescopische parasols
+            </button>
+            <button className="px-6 py-2 bg-gray-200 text-black rounded-full hover:bg-gray-300 transition cursor-pointer">
+              Alle parasols
+            </button>
           </div>
         </motion.div>
 
