@@ -81,8 +81,8 @@ export default function Navbar() {
             isHome && isAtTop ? "text-white" : "text-black"
           }`}
         >
-          <NavLink href="/products">PRODUCTS</NavLink>
-          <NavLink href="/about">ABOUT</NavLink>
+          <NavLink href="/products">PRODUCTEN</NavLink>
+          <NavLink href="/about">OVER ONS</NavLink>
           <NavLink href="/contact">CONTACT</NavLink>
         </div>
       </div>
