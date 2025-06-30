@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 export default function HeroBanner() {
   return (
     <section className="relative h-[40vh] overflow-hidden">
