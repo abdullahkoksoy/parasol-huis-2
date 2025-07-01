@@ -18,8 +18,7 @@ export default function Hero() {
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source
-          src="https://res.cloudinary.com/dl6cfl5d1/video/upload/f_auto,q_auto/v1719851543/products/video/Parasol-video-hero-qua.mp4
-"
+          src="https://res.cloudinary.com/dl6cfl5d1/video/upload/v1751397535/sqrltymvc7hj3ebxsksh.mp4"
           type="video/mp4"
         />
         {/* Add other formats if needed */}
