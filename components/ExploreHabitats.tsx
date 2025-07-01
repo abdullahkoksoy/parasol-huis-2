@@ -8,25 +8,25 @@ import { ArrowLeft, ArrowRight, Plus, X } from "lucide-react";
 const habitats = [
   {
     label: "Gardens",
-    imgSrc: "/images/habitats/garden.jpg",
+    imgSrc: "/images/habitats/parasol-garden.jpg",
     description:
       "Beautiful gardens featuring our parasols in natural outdoor settings.",
   },
   {
     label: "Restaurants",
-    imgSrc: "/images/habitats/restaurant.jpg",
+    imgSrc: "/images/habitats/parasol-cafe.jpg",
     description:
       "Enjoy elegant parasol-covered dining areas in top restaurants.",
   },
   {
     label: "Cruise",
-    imgSrc: "/images/habitats/cruise.jpg",
+    imgSrc: "/images/habitats/parasol-beach.jpg",
     description:
       "Relax under parasols on luxury cruise ship decks and lounges.",
   },
   {
     label: "Hotels",
-    imgSrc: "/images/habitats/hotel.jpg",
+    imgSrc: "/images/habitats/parasol-hotel.jpg",
     description:
       "Upscale hotels with stylish parasols to enhance your outdoor spaces.",
   },

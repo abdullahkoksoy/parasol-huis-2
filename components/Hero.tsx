@@ -15,10 +15,11 @@ export default function Hero() {
         muted
         loop
         playsInline
+        preload="none"
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source
-          src="https://res.cloudinary.com/dl6cfl5d1/video/upload/v1751397535/sqrltymvc7hj3ebxsksh.mp4"
+          src="https://res.cloudinary.com/dl6cfl5d1/video/upload/f_auto,q_auto/v1751397535/sqrltymvc7hj3ebxsksh.mp4"
           type="video/mp4"
         />
         {/* Add other formats if needed */}
