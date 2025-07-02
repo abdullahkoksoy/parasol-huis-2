@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 
@@ -9,11 +10,39 @@ const fadeUpVariant = {
 };
 
 export default function Contact() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("https://formspree.io/f/mnnvrnda", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new FormData(e.target as HTMLFormElement),
+    });
+
+    if (res.ok) {
+      setIsSubmitted(true);
+      setFormData({ email: "", message: "" });
+    } else {
+      alert("Er is een fout opgetreden. Probeer het later opnieuw.");
+    }
+  };
+
   return (
     <>
       <Navbar />
 
-      {/* Başlık ve Açıklama */}
       <motion.section
         variants={fadeUpVariant}
         initial="hidden"
@@ -27,13 +56,12 @@ export default function Contact() {
             Contact
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Heeft u vragen of wenst u meer informatie over onze producten? Neem
-            gerust contact met ons op – we helpen u graag verder.
+            Heeft u vragen? Neem gerust contact met ons op via het onderstaande
+            formulier.
           </p>
         </div>
       </motion.section>
 
-      {/* İletişim Formu */}
       <motion.section
         variants={fadeUpVariant}
         initial="hidden"
@@ -43,70 +71,62 @@ export default function Contact() {
         className="bg-white pb-28 px-4 md:px-10 lg:px-32"
       >
         <div className="max-w-3xl mx-auto">
-          <form
-            action="https://formsubmit.io/send/akoksoy94@gmail.com"
-            method="POST"
-            className="space-y-6"
-          >
-            <input
-              type="hidden"
-              name="_redirect"
-              value="https://parasolhuis.nl/bedankt"
-            />
-            <input
-              type="text"
-              name="_formsubmit_id"
-              style={{ display: "none" }}
-            />
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  E-mailadres
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="jouw@email.nl"
+                  className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm p-3 focus:outline-none focus:ring-1 focus:ring-black"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Naam
-              </label>
-              <input
-                type="text"
-                name="naam"
-                placeholder="Uw naam"
-                required
-                className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm p-3 focus:outline-none focus:ring-1 focus:ring-black"
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Bericht
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  placeholder="Uw bericht..."
+                  className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm p-3 focus:outline-none focus:ring-1 focus:ring-black"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                E-mailadres
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email@voorbeeld.nl"
-                required
-                className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm p-3 focus:outline-none focus:ring-1 focus:ring-black"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Bericht
-              </label>
-              <textarea
-                name="bericht"
-                rows={5}
-                placeholder="Uw bericht..."
-                required
-                className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm p-3 focus:outline-none focus:ring-1 focus:ring-black"
-              />
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition duration-300"
-              >
-                Verstuur bericht
-              </button>
-            </div>
-          </form>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition duration-300"
+                >
+                  Verstuur bericht
+                </button>
+              </div>
+            </form>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center mt-10"
+            >
+              <h2 className="text-2xl font-semibold text-black mb-2">
+                Bedankt!
+              </h2>
+              <p className="text-gray-600">
+                Uw bericht is verzonden. We nemen snel contact met u op.
+              </p>
+            </motion.div>
+          )}
         </div>
       </motion.section>
     </>
