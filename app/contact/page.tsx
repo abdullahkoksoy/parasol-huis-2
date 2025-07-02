@@ -42,7 +42,6 @@ export default function Contact() {
   return (
     <>
       <Navbar />
-
       <motion.section
         variants={fadeUpVariant}
         initial="hidden"
@@ -55,6 +54,34 @@ export default function Contact() {
           <h1 className="text-5xl md:text-6xl font-light text-black mb-6">
             Contact
           </h1>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
+            {/* E-mail */}
+            <a
+              href="mailto:parasolhuis@gmail.com"
+              className="text-lg text-white leading-relaxed bg-gray-600 border-2 border-gray-500 rounded-lg px-6 py-3 min-w-[250px] text-center hover:bg-gray-700 transition"
+            >
+              E-mail <br /> parasolhuis@gmail.com
+            </a>
+
+            {/* Phone */}
+            <a
+              href="tel:+31627392695"
+              className="text-lg text-white leading-relaxed bg-gray-600 border-2 border-gray-500 rounded-lg px-6 py-3 min-w-[250px] text-center hover:bg-gray-700 transition"
+            >
+              Telefoon <br /> +31 6 27392695
+            </a>
+
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/31627392695"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg text-white leading-relaxed bg-green-600 border-2 border-green-500 rounded-lg px-6 py-3 min-w-[250px] text-center hover:bg-green-700 transition"
+            >
+              WhatsApp <br /> Stuur een bericht
+            </a>
+          </div>
+          <br />
           <p className="text-lg text-gray-600 leading-relaxed">
             Heeft u vragen? Neem gerust contact met ons op via het onderstaande
             formulier.
