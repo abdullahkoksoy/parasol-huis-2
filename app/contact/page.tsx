@@ -44,7 +44,7 @@ export default function Contact() {
       >
         <div className="max-w-3xl mx-auto">
           <form
-            action="https://formsubmit.io/send/info@parasolhuis.nl"
+            action="https://formsubmit.io/send/akoksoy94@gmail.com"
             method="POST"
             className="space-y-6"
           >
