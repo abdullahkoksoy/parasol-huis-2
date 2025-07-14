@@ -76,7 +76,7 @@ export default function Contact() {
               href="https://wa.me/31627392695"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg text-white leading-relaxed bg-green-600 border-2 border-green-500 rounded-lg px-6 py-3 min-w-[250px] text-center hover:bg-green-700 transition"
+              className="text-lg text-white leading-relaxed bg-green-500 border-2 border-green-400 rounded-lg px-6 py-3 min-w-[250px] text-center hover:bg-green-700 transition"
             >
               WhatsApp <br /> Stuur een bericht
             </a>
